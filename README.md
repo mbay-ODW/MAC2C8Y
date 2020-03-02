@@ -33,7 +33,6 @@ Within the FritzBox and probably any other router you can prohibit the communica
 ## Getting Started
 
 Getting stated is much easier on linux than on windows since some of the sniffing libraries only work on unix natively.
-I will update the installation path for windows soon.
 
 ### Prerequisites
 
@@ -73,13 +72,16 @@ Since a device could possibly create multiple requests (e.g. signal strenght or 
 The Event class handles the incoming request event within the network.
 Therefore it uses the mapper class to check whether the source of the request comes from a device that is listed wihtin the MACID.csv.
 
-The event is send as standard template as 'c8y_MAC_Event' combined with the name in the whitelist file and the MAC addres.city on a static built in message with the name of the parameter "Speed" and the value "100".
+The event is send as standard template as 'c8y_MAC_Event' combined with the name in the whitelist file and the MAC address.
+
+![Parameters](pics/Event.png)
+
 
 ### Mapper
 
 The mapper reads the file 'MACID.csv'. They are handeles as dictonaries within the module. There is just one task:
 
-1. Check whether the Mac addres is listed within the file and thus the device is valid for sending events
+1. Check whether the Mac address is listed within the file and thus the device is valid for sending events
 
 ### sendData
 

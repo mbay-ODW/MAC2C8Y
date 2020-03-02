@@ -12,7 +12,7 @@ class Event(object):
         self.logger.debug('Logger for Event was initialised')
         self.macID = macID
         self.logger.info('The following macID was pressed: %s', self.macID)
-        self.logger.debug('Checking whether dashbutton is listed')
+        self.logger.debug('Checking whether MAC is listed')
         if mapper.checkWhetherIDIsListed(self.macID) is False:
             self.logger.info('Dashbutton is not listed inside the macIDs file, setting event.valid to false and skipping event')
             self.valid = False
