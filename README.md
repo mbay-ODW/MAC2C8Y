@@ -47,7 +47,7 @@ Getting stated is much easier on linux than on windows since some of the sniffin
 5. Install configparser -> pip install configparser
 6. Install Paho MQTT -> pip install paho-mqtt
 
-Make sure to use python3 and not python 2!
+Make sure to use python3 and not python 2! Additionally you need to user sudo!
 
 ### Daemon service
 
@@ -78,7 +78,7 @@ Therefore it uses the mapper class to check whether the source of the request co
 
 The event is send as standard template as 'c8y_MAC_Event' combined with the name in the whitelist file and the MAC address.
 
-![Parameters](pics/Event.png)
+![Event](pics/Event.png)
 
 
 ### Mapper
