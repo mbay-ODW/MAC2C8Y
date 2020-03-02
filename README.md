@@ -6,7 +6,6 @@ However any other device registartion can be used such as iPhones within a netwo
 You can use the APAMA Analytics Builder to create rules around the incoming event such as Alarming or measurement creation.
 
 ![AnalyitcsBuilder](pics/AnalyticsBuilder.png)
-AnalyticsBuilder
 
 Cumulocity is an IoT platform that enables rapid connections of many, many different devices and applications. It allows you to monitor and respond to IoT data in real time and to spin up this capability in minutes. More information on Cumulocity IoT and how to start a free trial can be found [here](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/).
 
