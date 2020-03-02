@@ -1,5 +1,7 @@
 # Cumulocity Example on how to trigger Events with an Amazon Dashbutton
 This is an example for sniffing data packages inside a network and filtering connection packages. This can be used e.g. to make Amazon Dashbuttons trigger Events and thus whole actions in Cumulocity.
+In this example I used an Amazon  Dashbutton, since they are cheap and easy to use (see section). The Event how ever can be used as a Smart Kanbas inside a storage system.
+However any other device registartion can be used such as iPhones within a network or Laptops. Some manufactures due to energy saving reasons deactivate the connection to the wireless network such that a "new" device within the network might not be "new" within the network. Be carefull!
 
 Cumulocity is an IoT platform that enables rapid connections of many, many different devices and applications. It allows you to monitor and respond to IoT data in real time and to spin up this capability in minutes. More information on Cumulocity IoT and how to start a free trial can be found [here](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/).
 
@@ -23,18 +25,26 @@ Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=
 There are plenty of smart buttons on the market but none was as cheap as the dash buttons from Amazon. Actually there were meant to be used to trigger orders directly from Amazon.
 Since the button itself connects to the wireless network the ARP request combined with the known MAC ID of the Button can be used to detect that the button was pressed. The button itself only connects if pressed.
 From pressing to getting the connection request within the script usually there is a latency of around 1-2 s.
+If you use an Dashbutton, make sure not to allow its communication outside the network. Otherwise Amazon will ship you quite a lot of orderings :-)
+Within the FritzBox and probably any other router you can prohibit the communication for specific devices.
 
 ![Dashbuttons](pics/dashbutton.png)
 
 ## Getting Started
 
-
+Getting stated is much easier on linux than on windows since some of the sniffing libraries only work on unix natively.
+I will update the installation path for windows soon.
 
 ### Prerequisites
 
 1. Wifi Security -> Don´t do this with wildcard MAC files and open Wifi´s, don´t do open Wifi at all :-)
 2. Install scapy -> pip install scapy
+3. Install pandas -> pip install pandas
+4. Install jsonify -> pip install jsonify
+5. Install configparser -> pip install configparser
+6. Install Paho MQTT -> pip install paho-mqtt
 
+Make sure to use python3 and not python 2!
 
 ### Daemon service
 
