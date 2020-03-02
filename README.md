@@ -1,1 +1,99 @@
-# MAC2C8Y
+# Cumulocity Example on how to trigger Events with an Amazon Dashbutton
+This is an example for sniffing data packages inside a network and filtering connection packages. This can be used e.g. to make Amazon Dashbuttons trigger Events and thus whole actions in Cumulocity.
+
+Cumulocity is an IoT platform that enables rapid connections of many, many different devices and applications. It allows you to monitor and respond to IoT data in real time and to spin up this capability in minutes. More information on Cumulocity IoT and how to start a free trial can be found [here](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/).
+
+Cumulocity IoT enables companies to to quickly and easily implement smart IoT solutions.
+
+![Dashboard](pics/Dashboard.png)
+
+______________________
+For more information you can Ask a Question in the [TECHcommunity Forums](http://tech.forums.softwareag.com/techjforum/forums/list.page?product=webmethods-io-b2b).
+
+You can find additional information in the [Software AG TECHcommunity](http://techcommunity.softwareag.com/home/-/product/name/webmethods-io-b2b).
+______________________
+
+These tools are provided as-is and without warranty or support. They do not constitute part of the Software AG product suite. Users are free to use, fork and modify them, subject to the license agreement. While Software AG welcomes contributions, we cannot guarantee to include every contribution in the master project.
+
+Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=Github/SoftwareAG) if you have any questions.
+
+
+## Amazon Dashbuttons
+
+There are plenty of smart buttons on the market but none was as cheap as the dash buttons from Amazon. Actually there were meant to be used to trigger orders directly from Amazon.
+Since the button itself connects to the wireless network the ARP request combined with the known MAC ID of the Button can be used to detect that the button was pressed. The button itself only connects if pressed.
+From pressing to getting the connection request within the script usually there is a latency of around 1-2 s.
+
+![Dashbuttons](pics/dashbutton.png)
+
+## Getting Started
+
+
+
+### Prerequisites
+
+1. Wifi Security -> Don´t do this with wildcard MAC files and open Wifi´s, don´t do open Wifi at all :-)
+2. Install scapy -> pip install scapy
+
+
+### Daemon service
+
+The service can run as a daemon service in order to keep it up and running in the background. There is a shell script provided to copy service and application into the correct directory. Make sure to run it as root.
+
+## Code structure
+
+Basically there are 4 major tasks:
+
+1. Listening on a network for new devices -> Listener
+3. The a devices registers inside the network mapped against a list of mac adresses -> Mapper
+2. If a proper device was detectect, do something -> Event class
+4. Result needs to be send to C8Y -> sendData
+
+Debugger is set to Info in every module, this makes debugging a lot easier. Change if you want.
+
+### Listener
+
+The listener class actually consists of nothing but a sniffer that searchs for the request of a new device within the network. If it receives an ARP request within the network it uses the source of this for calling the Event class.
+In case of an valid event, which is if the source MAC addres is also listed in the csv file, an Event is created and send via MQTT.
+
+Since a device could possibly create multiple requests (e.g. signal strenght or leaving and entering a certain area) it might be reasonable to create something like a dead time on a later stage.
+
+
+### Event class
+The Event class handles the incoming request event within the network.
+Therefore it uses the mapper class to check whether the source of the request comes from a device that is listed wihtin the MACID.csv.
+
+The event is send as standard template as 'c8y_MAC_Event' combined with the name in the whitelist file and the MAC addres.city on a static built in message with the name of the parameter "Speed" and the value "100".
+
+### Mapper
+
+The mapper reads the file 'MACID.csv'. They are handeles as dictonaries within the module. There is just one task:
+
+1. Check whether the Mac addres is listed within the file and thus the device is valid for sending events
+
+### sendData
+
+The sendData modul consists of two  major classes.
+One is the sending class itself in order to manage the sending of a current event.
+The second one is the connector  that manages the topic, the client ID of the device and keeps the connection until data was send. The valid connector needs to be handed over to the sending class. It gets its credentials and connection data from the config file and does not require to give addtional information while creating the instance.
+
+
+### MACIDs
+
+The idea of the parameterfile is to have a proofing instance of which parameters will be handeled. The structure is basically only the name of the parameter.
+
+![Parameters](pics/MACID.png)
+
+### config
+
+The config file is the main configuration file to adjust all the required parameters wihtin the runtime.
+
+  [C8YMQTT]
+  1. tenant = This is the tenant URL that should display the data
+  2. tenantID = Your can get your Tenant ID from your administrator, it starts with "t", e.g. t1231231235
+  3. user = Tenat User start with your ID and a backslah, followd by user, e.g. t2131324124/myuser
+  4. port = In this example the unsecure 1883 port is used. We recommend to use 8883 together with SSL.
+  5. password  = Password of the user
+  6. deviceID = The device ID you use for the connection will be used as identifier. If the device was not created before it will be created, but with prefix "My MQTT Device".
+
+![Config](pics/config.png)
