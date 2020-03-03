@@ -1,6 +1,6 @@
-# Cumulocity Example on how to trigger Events with an Amazon Dashbutton
+# Cumulocity Example on how to trigger Events with an Amazon Dashbutton for a Smart Kanban System
 This is an example for sniffing data packages inside a network and filtering connection packages. This can be used e.g. to make Amazon Dashbuttons trigger Events and thus whole actions in Cumulocity.
-In this example I used an Amazon  Dashbutton, since they are cheap and easy to use (see section). The Event how ever can be used as a Smart Kanbas inside a storage system.
+In this example I used an Amazon  Dashbutton, since they are cheap and easy to use (see section). The Event how ever can be used as a Smart Kanbas inside a storage system as a real industrial IoT example.
 However any other device registartion can be used such as iPhones within a network or Laptops. Some manufactures due to energy saving reasons deactivate the connection to the wireless network such that a "new" device within the network might not be "new" within the network. Be carefull!
 
 You can use the APAMA Analytics Builder to create rules around the incoming event such as Alarming or measurement creation.
@@ -23,6 +23,17 @@ These tools are provided as-is and without warranty or support. They do not cons
 
 Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=Github/SoftwareAG) if you have any questions.
 
+## KANBAN System
+
+Kanban is commonly used as an inventory scheduling system that allows productions to keep only needed components on stock. In Lean manufacturing the technique is used to keep inventory levels as low as possible. Material is pulled within the process through the production since the Kanban system provides the signal for reordering into the stock.
+
+![KANBAN](pics/Kanban.png)
+
+A Kanban system allows a company to reduce their level of inventory. This reduces the cost associated with stocking and storing materials. Using a Kanban system in a lean environment allow actual customer demand to determine the need for materials and not forecasts of the demand.
+
+A company can use one of several methods to signal stock replenishment with a Kanban system. For example, colored bins or reorder cards are methods that signal it is time to repurchase materials or parts. In most of the cases the signal is analog and no digital trigger is used. However this requires a very consequent check of the Kanban cards. Here comes the idea of a fast and easy triggering event via a button into play that triggers the purchasing process.
+
+The appropriate level of material needs to be adjsuted to prevent stock outs. The lead-time for parts and materials from vendors is a factor in determining the optimum level of inventory. The organization may adjust the Kanban levels several times before finding the best quantity of material to keep on hand for production or distribution. Therefore a digital system together with the generated data on site could significantly improve the adjustment speed, even in short term optimizations such as holidays or overproduction.
 
 ## Amazon Dashbuttons
 
