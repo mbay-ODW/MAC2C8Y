@@ -69,7 +69,7 @@ The service can run as a daemon service in order to keep it up and running in th
 Basically there are 4 major tasks:
 
 1. Listening on a network for new devices -> Listener
-3. The a devices registers inside the network mapped against a list of mac adresses -> Mapper
+3. If a devices registers inside the network mapped against c8y_Serial of the Idneity Service -> Mapper
 2. If a proper device was detectect, do something -> Event class
 4. Result needs to be send to C8Y -> sendData
 
@@ -96,7 +96,7 @@ The event is send as standard template as 'c8y_MAC_Event' combined with the name
 
 The mapper reads the file 'MACID.csv'. They are handeles as dictonaries within the module. There is just one task:
 
-1. Check whether the Mac address is listed within the file and thus the device is valid for sending events
+1. Check whether the Mac address is listed as external ID in Cumulocity. If a managed object with the MAC address as c8y_Serial exists, the device is valid for sending events
 
 ### sendData
 
@@ -121,6 +121,5 @@ The config file is the main configuration file to adjust all the required parame
   3. user = Tenat User start with your ID and a backslah, followd by user, e.g. t2131324124/myuser
   4. port = In this example the unsecure 1883 port is used. We recommend to use 8883 together with SSL.
   5. password  = Password of the user
-  6. deviceID = The device ID you use for the connection will be used as identifier. If the device was not created before it will be created, but with prefix "My MQTT Device".
 
 ![Config](pics/config.png)
