@@ -14,12 +14,12 @@ class Event(object):
         self.logger.info('The following macID was pressed: %s', self.macID)
         self.logger.debug('Checking whether MAC is listed')
         if mapper.checkWhetherIDIsListed(self.macID) is False:
-            self.logger.info('Dashbutton is not listed inside the macIDs file, setting event.valid to false and skipping event')
+            self.logger.info('Mac address is not listed inside C8Y, setting event.valid to false and skipping event')
             self.valid = False
             return
         self.valid = True
         self.macIDName = mapper.checkWhetherIDIsListed(self.macID)
-        self.logger.info('macID is listed in the file and has the name %s', self.macIDName)
+        self.logger.info('macID is listed in C8Y %s', self.macIDName)
         self.c8yTopic = 's/us'
         self.logger.info('c8yTopic was set inside the Event to %s', self.c8yTopic)
         self.c8yPayload = '400,' + 'c8y_MAC_Event' + ',' + str(self.macIDName) + '/' + str(self.macID)

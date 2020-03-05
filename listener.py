@@ -23,7 +23,7 @@ def udp_filter(pkt):
                     CurrentEvent = event.Event(pkt.src)
                     if CurrentEvent.valid is not False:
                         logger.debug('Creating connector to C8Y´s MQTT')
-                        C8YConnector = sendData.MQTTc8yConnector()
+                        C8YConnector = sendData.MQTTc8yConnector(ID = pkt.src)
                         logger.debug('Connector to C8Y´s MQTT created, Creating SendMQTT to C8Y object and inserting event')
                         C8YSendMQTTData = sendData.SendDataViaMQTT(C8YConnector,CurrentEvent)
                         logger.debug('Connector to C8Y´s MQTT created, Creating SendMQTT to C8Y object and inserting event')

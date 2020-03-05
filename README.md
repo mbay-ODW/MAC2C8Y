@@ -27,7 +27,7 @@ Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=
 
 Kanban is commonly used as an inventory scheduling system that allows productions to keep only needed components on stock. In Lean manufacturing the technique is used to keep inventory levels as low as possible. Material is pulled within the process through the production since the Kanban system provides the signal for reordering into the stock.
 
-![KANBAN](pics/Kanban.png)
+![KANBAN](pics/kanban.jpg)
 
 A Kanban system allows a company to reduce their level of inventory. This reduces the cost associated with stocking and storing materials. Using a Kanban system in a lean environment allow actual customer demand to determine the need for materials and not forecasts of the demand.
 
